@@ -1,0 +1,15 @@
+{
+  "name": "partsplan",
+  "description": "PartsPlan — manufacturer datasheet evidence for electronic component work in Claude Code.",
+  "owner": {
+    "name": "Dabit",
+    "email": "hello@partsplanai.com"
+  },
+  "plugins": [
+    {
+      "name": "partsplan",
+      "source": "./",
+      "description": "Datasheet evidence for PCB design and circuit review: manufacturer datasheet pages, tables, graphs and drawings, cited by page."
+    }
+  ]
+}

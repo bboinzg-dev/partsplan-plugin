@@ -1,4 +1,4 @@
-# PartsPlan for Cursor
+# PartsPlan for Claude Code and Cursor
 
 Datasheet evidence for firmware, PCB design and circuit review.
 
@@ -6,16 +6,22 @@ PartsPlan connects your agent to an archive of manufacturer datasheets for elect
 
 ## What's in this plugin
 
-- `mcp.json` — the PartsPlan MCP server (remote; you sign in with your PartsPlan account, no API key in the config)
+- `.mcp.json` (Claude Code) and `mcp.json` (Cursor) — the PartsPlan MCP server `https://worker.partsplanai.com/mcp` (remote; you sign in with your PartsPlan account, no API key in the config)
 - `skills/partsplan-datasheets/SKILL.md` — how the agent uses the tools and cites pages
-- `.cursor-plugin/plugin.json` — the plugin manifest
+- `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` — the Claude Code plugin manifest and marketplace entry
+- `.cursor-plugin/plugin.json` — the Cursor plugin manifest
+
+Nothing runs on your machine: the plugin has no local code, scripts or hooks.
 
 This repository holds only the plugin configuration and the skill. The PartsPlan service runs at [partsplanai.com](https://partsplanai.com/en) under its own [terms](https://partsplanai.com/en/terms).
 
 ## Install
 
+- **Claude Code** (2.1.275 or later): `/plugin install partsplan --marketplace bboinzg-dev/partsplan-plugin`
+  Older versions: `/plugin marketplace add bboinzg-dev/partsplan-plugin`, then `/plugin install partsplan@partsplan`.
+- **Claude (web, desktop, mobile):** add PartsPlan from the connector directory — [claude.ai/directory/connectors/partsplan](https://claude.ai/directory/connectors/partsplan)
 - **Cursor Marketplace:** search for "PartsPlan".
-- **Manual:** add the server to `~/.cursor/mcp.json`:
+- **Manual (Cursor):** add the server to `~/.cursor/mcp.json`:
 
 ```json
 {
@@ -50,9 +56,16 @@ The first tool call opens the PartsPlan sign-in page (Google or email). A free p
 | `request_datasheet_collection` | Records a request to collect a missing datasheet |
 | `report_problem` | Records a report when an answer did not match the original |
 
+## Data handling
+
+- **Sent to PartsPlan:** only what the agent puts into a tool call — part numbers, manufacturer names, BOM lines, search terms, document and page identifiers — together with your PartsPlan sign-in.
+- **Not sent by the plugin:** your project files. If the agent reads a BOM file in your repository, it sends the lines it extracted, not the file.
+- **Kept by PartsPlan:** request records (tool, time, result) and how they are processed, as described in the [privacy policy](https://partsplanai.com/en/privacy).
+
 ## Limits
 
 - Answers point to the document and page they were read from; missing information is not estimated.
+- An empty result covers the PartsPlan archive only — the manufacturer's site may still have the document.
 - No stock, price or lead-time data, and no circuit validation.
 
 ## Links

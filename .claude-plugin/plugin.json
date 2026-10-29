@@ -1,0 +1,25 @@
+{
+  "name": "partsplan",
+  "displayName": "PartsPlan",
+  "version": "1.1.0",
+  "description": "Datasheet evidence for firmware, PCB design and circuit review: find a part's manufacturer datasheet and read the page with the register map, pinout, electrical table, graph or application circuit, with the document and page behind every answer.",
+  "author": {
+    "name": "Dabit",
+    "email": "hello@partsplanai.com",
+    "url": "https://partsplanai.com/en"
+  },
+  "homepage": "https://partsplanai.com/en",
+  "privacyPolicyUrl": "https://partsplanai.com/en/privacy",
+  "repository": "https://github.com/bboinzg-dev/partsplan-plugin",
+  "license": "MIT",
+  "keywords": [
+    "datasheet",
+    "electronic components",
+    "embedded",
+    "firmware",
+    "pcb design",
+    "circuit review",
+    "bom",
+    "hardware"
+  ]
+}

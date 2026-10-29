@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "partsplan": {
+      "type": "http",
+      "url": "https://worker.partsplanai.com/mcp"
+    }
+  }
+}

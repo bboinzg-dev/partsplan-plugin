@@ -8,7 +8,7 @@ description: Look up electronic-component datasheets with PartsPlan while writin
 PartsPlan keeps an archive of manufacturer datasheets for electronic components and shows where each section, table and figure sits in a document. It returns locations and the printed source; the engineering judgement stays with the user and the conversation.
 
 ## Connect
-This plugin adds the PartsPlan MCP server (`https://worker.partsplanai.com/mcp`). The first time a tool runs, Cursor opens the PartsPlan sign-in page (Google or email; a free plan is available). Call limits depend on the account; when a limit is reached the tool says so and when it resets.
+This plugin adds the PartsPlan MCP server (`https://worker.partsplanai.com/mcp`). The first time a tool runs, the app (Claude Code or Cursor) opens the PartsPlan sign-in page (Google or email; a free plan is available). Call limits depend on the account; when a limit is reached the tool says so and when it resets.
 
 ## The basic path (one part, one question)
 1. `find_datasheet(mpn, brand)` — the requested manufacturer's document comes first; documents from other manufacturers for the same part number are listed separately and describe other parts.
