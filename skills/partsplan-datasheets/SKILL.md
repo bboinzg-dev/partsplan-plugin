@@ -1,6 +1,6 @@
 ---
 name: partsplan-datasheets
-description: Look up electronic-component datasheets with PartsPlan while writing firmware, designing a PCB or reviewing a circuit — find the manufacturer's document for a part number, go to the page with the register map, pinout, electrical table, graph or application circuit, and cite the document and page. Use for ratings, pinouts, register maps, package drawings, BOM checks and comparing candidate parts.
+description: Look up electronic-component datasheets with PartsPlan while writing firmware, designing a PCB or reviewing a circuit — find the manufacturer's document for a part number, go to the page with the register map, pinout, electrical table, graph or application circuit, and cite the document and page. Use for ratings, pinouts, register maps, package drawings, BOM checks and comparing candidate parts; check live distributor stock and prices only when the user asks for them.
 ---
 
 # PartsPlan datasheets
@@ -30,8 +30,15 @@ This plugin adds the PartsPlan MCP server (`https://worker.partsplanai.com/mcp`)
 - A missing datasheet the user wants: `request_datasheet_collection` records a collection request.
 - A wrong answer: `report_problem` with the document, page and block.
 
+## Stock and prices
+Use `check_stock` only for an explicit stock or price request. An exact part number is required; ask for it when missing. A request accepts up to three exact part numbers and uses five plan units per part number. Do not add stock checks to datasheet, BOM or driver tasks without a request.
+
+Show each distributor's reported price breaks, stock, lead time and lifecycle labels when supplied, with the retrieval time and currency. Keep the distributor attribution and data notices. Include only returned product links; element14 results have no product link. Report unavailable or failed lookups as such, not as zero stock. Do not convert currencies, compare prices across currencies, estimate missing values, rank sellers or recommend a purchase. Longer orderable codes listed in `candidates` were not checked; check one by calling again with it.
+
+PartsPlan does not store stock-query results. Distributor results have retrieval times rather than datasheet page citations. PartsPlan does not place orders or process payments.
+
 ## What the answers mean
 - A value always comes with the document and page it was read from; missing values are not estimated.
 - "No document" covers the PartsPlan archive only. The manufacturer's site can still answer — say which parts of an answer came from outside PartsPlan.
 - When a text block is marked as read from an image of the page, confirm numbers on the page image.
-- PartsPlan has no stock, price or lead-time data and does not validate circuits.
+- PartsPlan does not validate circuits.

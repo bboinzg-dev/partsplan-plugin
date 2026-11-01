@@ -1,6 +1,6 @@
 {
   "name": "partsplan",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Datasheet evidence for firmware, PCB design and circuit review: find a part's manufacturer datasheet and read the page with the register map, pinout, electrical table, graph or application circuit, with the document and page behind every answer.",
   "author": {
     "name": "Dabit",
@@ -15,7 +15,7 @@
     "embedded",
     "firmware",
     "PCB",
-    "circuit design",
+    "circuit review",
     "BOM",
     "hardware"
   ],
