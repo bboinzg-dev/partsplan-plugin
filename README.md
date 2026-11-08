@@ -8,6 +8,7 @@ PartsPlan connects your agent to an archive of manufacturer datasheets for elect
 
 - `.mcp.json` (Claude Code) and `mcp.json` (Cursor) — the PartsPlan MCP server `https://worker.partsplanai.com/mcp` (remote; you sign in with your PartsPlan account, no API key in the config)
 - `skills/partsplan-datasheets/SKILL.md` — how the agent uses the tools and cites pages
+- `skills/circuit-review/` — reviews a finished schematic, BOM or PCB layout and points out problems with the datasheet document and page behind each one; it does not validate or redesign the circuit
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` — the Claude Code plugin manifest and marketplace entry
 - `.cursor-plugin/plugin.json` — the Cursor plugin manifest
 
