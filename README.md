@@ -9,12 +9,13 @@ PartsPlan connects your agent to an archive of manufacturer datasheets for elect
 - `.mcp.json` (Claude Code) and `mcp.json` (Cursor) — the PartsPlan MCP server `https://worker.partsplanai.com/mcp` (remote; you sign in with your PartsPlan account, no API key in the config)
 - `skills/partsplan-datasheets/SKILL.md` — how the agent uses the tools and cites pages
 - `skills/circuit-review/` — reviews a finished schematic, BOM or PCB layout and points out problems with the datasheet document and page behind each one; it does not validate or redesign the circuit
+- `skills/datasheet-folder/SKILL.md` — fills a design project's datasheet folder with the manufacturer datasheet PDFs for its BOM (KiCad, EasyEDA/JLCPCB, Altium and other project layouts), so tools that read local PDFs can use them; it only places files
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` — the Claude Code plugin manifest and marketplace entry
 - `.cursor-plugin/plugin.json` — the Cursor plugin manifest
 
 Nothing runs on your machine: the plugin has no local code, scripts or hooks.
 
-This repository holds only the plugin configuration and the skill. The PartsPlan service runs at [partsplanai.com](https://partsplanai.com/en) under its own [terms](https://partsplanai.com/en/terms).
+This repository holds only the plugin configuration and the skills. The PartsPlan service runs at [partsplanai.com](https://partsplanai.com/en) under its own [terms](https://partsplanai.com/en/terms).
 
 ## Install
 
@@ -40,6 +41,7 @@ The first tool call opens the PartsPlan sign-in page (Google or email). A free p
 - "Using PartsPlan, find the Config register table in the ADS1115 datasheet and write the bit fields as C defines, citing the page."
 - "Using PartsPlan, where does the TPS7A4701 datasheet give the dropout voltage at 1 A? Show the table row and page."
 - "Using PartsPlan, check this BOM against the manufacturer datasheets: TPS7A4701RGWR, TPS62130RGTR, ADS1148IPWR (Texas Instruments)."
+- "Using PartsPlan, put the datasheets for this project's BOM into its datasheets folder."
 
 ## Tools
 
@@ -64,12 +66,14 @@ The first tool call opens the PartsPlan sign-in page (Google or email). A free p
 - **Sent to PartsPlan:** only what the agent puts into a tool call — part numbers, manufacturer names, BOM lines, search terms, document and page identifiers — together with your PartsPlan sign-in.
 - **Stock and price requests:** `check_stock` sends the part numbers you ask about to distributor APIs to fetch current values; PartsPlan does not store the results.
 - **Not sent by the plugin:** your project files. If the agent reads a BOM file in your repository, it sends the lines it extracted, not the file.
+- **Saved on your machine:** only the datasheet PDFs the agent downloads when you ask it to fill a project's datasheet folder.
 - **Kept by PartsPlan:** request records (tool, time, result) and how they are processed, as described in the [privacy policy](https://partsplanai.com/en/privacy).
 
 ## Limits
 
 - Answers point to the document and page they were read from; missing information is not estimated.
 - An empty result covers the PartsPlan archive only — the manufacturer's site may still have the document.
+- A datasheet PDF download counts as 10 calls toward the account's limits. An archived copy may not be the manufacturer's current edition.
 - Stock and prices come only from `check_stock`, on request, as each distributor reports them (not stored, no currency conversion). No circuit validation.
 
 ## Links
