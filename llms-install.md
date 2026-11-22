@@ -2,7 +2,7 @@
 
 PartsPlan is a hosted (remote) MCP server. There is nothing to clone, build or run locally, and no API key goes into the configuration.
 
-1. Add this entry to the MCP settings file. In Cline it is `cline_mcp_settings.json` (MCP Servers → Configure → Configure MCP Servers; Cline CLI: `~/.cline/data/settings/cline_mcp_settings.json`):
+1. Add this entry to the MCP settings file. In Cline it is `~/.cline/data/settings/cline_mcp_settings.json`, used by both the VS Code extension and the Cline CLI (Customize → MCP → Edit Configuration; older versions: MCP Servers → Configure → Configure MCP Servers):
 
 ```json
 {
@@ -10,6 +10,7 @@ PartsPlan is a hosted (remote) MCP server. There is nothing to clone, build or r
     "partsplan": {
       "type": "streamableHttp",
       "url": "https://worker.partsplanai.com/mcp",
+      "timeout": 300,
       "disabled": false,
       "autoApprove": []
     }
@@ -17,8 +18,8 @@ PartsPlan is a hosted (remote) MCP server. There is nothing to clone, build or r
 }
 ```
 
-   Keep `"type": "streamableHttp"`. Without it Cline uses the legacy SSE transport.
+   Keep `"type": "streamableHttp"`. Without it Cline uses the legacy SSE transport. `timeout` (seconds) lets the first sign-in take longer than Cline's 60-second default.
 
-2. PartsPlan signs users in with OAuth. After saving the settings, ask the user to click **Authenticate** next to `partsplan` in Cline's MCP Servers panel and sign in with their PartsPlan account (Google or email) in the browser window that opens. A free plan is available.
+2. PartsPlan signs users in with OAuth. After saving the settings, ask the user to click **Authenticate** next to `partsplan` (Customize → MCP → Installed; older versions: the MCP Servers panel) and sign in with their PartsPlan account (Google or email) in the browser window that opens. If Cline stops waiting before the sign-in finishes, click **Authenticate** again. A free plan is available.
 
-3. Check the connection by calling `find_datasheet` with `{"mpn": "AO3400A"}`. The result lists the manufacturer's datasheet; `get_datasheet_map`, `get_page_blocks` and `get_page_image` then open the pages behind an answer.
+3. When connected, `partsplan` shows a green dot and lists its tools. Check the connection by calling `find_datasheet` with `{"mpn": "AO3400A"}`. The result lists the manufacturer's datasheet; `get_datasheet_map`, `get_page_blocks` and `get_page_image` then open the pages behind an answer.
