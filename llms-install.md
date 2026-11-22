@@ -20,6 +20,8 @@ PartsPlan is a hosted (remote) MCP server. There is nothing to clone, build or r
 
    Keep `"type": "streamableHttp"`. Without it Cline uses the legacy SSE transport. `timeout` (seconds) lets the first sign-in take longer than Cline's 60-second default.
 
+   Edit the file in place: Cline reloads it when the file changes. If `partsplan` does not appear under Customize → MCP → Installed (for example after the file was replaced rather than edited), open **Edit Configuration** and save once.
+
 2. PartsPlan signs users in with OAuth. After saving the settings, ask the user to click **Authenticate** next to `partsplan` (Customize → MCP → Installed; older versions: the MCP Servers panel) and sign in with their PartsPlan account (Google or email) in the browser window that opens. If Cline stops waiting before the sign-in finishes, click **Authenticate** again. A free plan is available.
 
 3. When connected, `partsplan` shows a green dot and lists its tools. Check the connection by calling `find_datasheet` with `{"mpn": "AO3400A"}`. The result lists the manufacturer's datasheet; `get_datasheet_map`, `get_page_blocks` and `get_page_image` then open the pages behind an answer.
