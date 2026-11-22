@@ -23,7 +23,7 @@ This repository holds only the plugin configuration and the skills. The PartsPla
   Older versions: `/plugin marketplace add bboinzg-dev/partsplan-plugin`, then `/plugin install partsplan@partsplan`.
 - **Claude (web, desktop, mobile):** add PartsPlan from the connector directory — [claude.ai/directory/partsplan](https://claude.ai/directory/partsplan)
 - **ChatGPT:** open the PartsPlan app — [chatgpt.com/plugins/plugin_asdk_app_6ac76b2dd1388191814e6d64da879049](https://chatgpt.com/plugins/plugin_asdk_app_6ac76b2dd1388191814e6d64da879049)
-- **Cursor Marketplace:** search for "PartsPlan".
+- **Cursor Marketplace:** search for "PartsPlan" (the listing is in review as of November 2026; until it appears, use the manual setup below).
 - **Manual (Cursor):** add the server to `~/.cursor/mcp.json`:
 
 ```json
@@ -33,6 +33,23 @@ This repository holds only the plugin configuration and the skills. The PartsPla
   }
 }
 ```
+
+- **Cline:** open **MCP Servers → Remote Servers**, enter Server Name `partsplan`, Server URL `https://worker.partsplanai.com/mcp` and Transport Type **Streamable HTTP**, click **Add Server**, then click **Authenticate** next to the server and sign in. Or add it to the MCP settings JSON (**MCP Servers → Configure → Configure MCP Servers**; Cline CLI: `~/.cline/data/settings/cline_mcp_settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "partsplan": {
+      "type": "streamableHttp",
+      "url": "https://worker.partsplanai.com/mcp",
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+  Keep `"type": "streamableHttp"`: without it Cline uses the legacy SSE transport.
 
 The first tool call opens the PartsPlan sign-in page (Google or email). A free plan is available — see [pricing](https://partsplanai.com/en/pricing). Setup for other apps: [partsplanai.com/en/developers](https://partsplanai.com/en/developers).
 
