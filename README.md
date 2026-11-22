@@ -34,7 +34,7 @@ This repository holds only the plugin configuration and the skills. The PartsPla
 }
 ```
 
-- **Cline:** open **Customize → MCP → Add Remote Server** (older versions: **MCP Servers → Remote Servers**), enter Server Name `partsplan`, Server URL `https://worker.partsplanai.com/mcp` and Transport Type **Streamable HTTP**, click **Add Server**, then click **Authenticate** and sign in in the browser. Cline waits about a minute for the sign-in; if it stops waiting first, click **Authenticate** again. Or add it to the MCP settings JSON (**Edit Configuration** in the same tab; the file is `~/.cline/data/settings/cline_mcp_settings.json` for both the VS Code extension and the Cline CLI). `timeout` (seconds) gives the first sign-in more time:
+- **Cline:** open **Customize → MCP → Add Remote Server** (older versions: **MCP Servers → Remote Servers**), enter Server Name `partsplan`, Server URL `https://worker.partsplanai.com/mcp` and Transport Type **Streamable HTTP**, click **Add Server**, then click **Authenticate** and sign in in the browser. If the sign-in takes longer than a minute, Cline may stop with "timed out after 60s"; click **Authenticate** again. Or add it to the MCP settings JSON (**Edit Configuration** in the same tab; the file is `~/.cline/data/settings/cline_mcp_settings.json` for both the VS Code extension and the Cline CLI). `timeout` (seconds) is Cline's MCP request time limit (60 by default):
 
 ```json
 {
